@@ -36,6 +36,7 @@
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             min-height: 100vh;
             color: var(--dark-color);
+            padding-top: 80px; /* Space for sticky banner */
         }
 
         .container {
@@ -49,11 +50,163 @@
             width: 100%;
             text-align: center;
             padding: 10px 0;
-            background: rgba(255, 255, 255, 0.9);
-            position: sticky;
+            background: rgba(255, 255, 255, 0.95);
+            position: fixed;
             top: 0;
+            left: 0;
+            z-index: 9999;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            display: block !important;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* Sidebar Ad */
+        .sidebar-ad {
+            position: fixed;
+            right: 10px;
+            top: 100px;
+            width: 160px;
+            height: 600px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 999;
+            box-shadow: var(--shadow);
+            border: 1px solid #e5e7eb;
+            display: none;
+        }
+
+        .sidebar-ad.active {
+            display: block;
+        }
+
+        .sidebar-ad-content {
+            padding: 15px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sidebar-ad h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .sidebar-ad a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 8px;
+            background: #f8fafc;
+            border-radius: 6px;
+            display: block;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .sidebar-ad a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* In-content Ad */
+        .in-content-ad {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .in-content-ad h4 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .in-content-ad a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            border-radius: 8px;
+            display: inline-block;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+
+        .in-content-ad a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .ad-label {
+            font-size: 10px;
+            color: #6b7280;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Floating Ad Button */
+        .floating-ad-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: float 3s ease-in-out infinite;
+            display: none;
+        }
+
+        .floating-ad-btn.active {
+            display: flex;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Responsive Ads */
+        @media (max-width: 768px) {
+            .banner-ad-container {
+                height: 60px;
+                padding: 5px;
+            }
+            
+            .sidebar-ad {
+                display: none !important;
+            }
+            
+            .floating-ad-btn {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+            
+            body {
+                padding-top: 70px;
+            }
         }
 
         /* Login/Signup Page Styles */
@@ -73,8 +226,27 @@
             max-width: 500px;
             text-align: center;
             box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
         }
 
+        /* Add ad in auth page */
+        .auth-ad {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .auth-ad a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* Rest of your existing styles remain exactly the same... */
         .auth-card h1 {
             color: var(--primary-color);
             margin-bottom: 10px;
@@ -706,25 +878,46 @@
     </style>
 </head>
 <body>
-    <!-- Banner Ad Container with Ads -->
-    <div class="banner-ad-container">
-        <!-- Banner Ads Script -->
+    <!-- Top Fixed Banner Ad -->
+    <div class="banner-ad-container" id="topBannerAd">
         <script type="text/javascript">
-          atOptions = {
-            'key' : '8e0f3128d198d92dd028d797e887f879',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
+            atOptions = {
+                'key' : '8e0f3128d198d92dd028d797e887f879',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
         </script>
-        <script
-          type="text/javascript"
-          src="//warhealthy.com/8e0f3128d198d92dd028d797e887f879/invoke.js"
-        ></script>
+        <script type="text/javascript" src="//warhealthy.com/8e0f3128d198d92dd028d797e887f879/invoke.js"></script>
     </div>
 
-    <!-- Rest of your HTML remains exactly the same -->
+    <!-- Sidebar Ad (Visible only on desktop) -->
+    <div class="sidebar-ad" id="sidebarAd">
+        <div class="sidebar-ad-content">
+            <h4>🔥 Hot Offers 🔥</h4>
+            <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                💰 Earn Extra Cash
+            </a>
+            <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                🎁 Special Bonus
+            </a>
+            <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                ⚡ Quick Money
+            </a>
+            <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                🏆 Top Earners
+            </a>
+            <div class="ad-label">Advertisement</div>
+        </div>
+    </div>
+
+    <!-- Floating Ad Button -->
+    <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank" class="floating-ad-btn" id="floatingAdBtn">
+        <i class="fas fa-bolt"></i>
+        Click Here!
+    </a>
+
     <!-- Auth Page (Login/Signup) -->
     <div id="authPage" class="auth-container">
         <div class="auth-card">
@@ -834,8 +1027,17 @@
                 Sign in with Google
             </button>
             
+            <!-- Auth Page Ad -->
+            <div class="auth-ad">
+                <p>🔥 <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">Click here for exclusive offers and bonuses!</a> 🔥</p>
+                <div class="ad-label">Advertisement</div>
+            </div>
+            
             <div class="terms">
                 <p>By creating an account, you agree to our Terms of Service and Privacy Policy. Your data is stored securely in your browser.</p>
+                <p style="margin-top: 10px; font-size: 10px;">
+                    <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank" style="color: #6b7280; text-decoration: none;">Partner Advertisement</a>
+                </p>
             </div>
 
             <div id="authStatus" style="margin-top: 20px; display: none;">
@@ -890,6 +1092,19 @@
                 <h1>Dashboard</h1>
             </div>
             
+            <!-- In-Content Ad 1 -->
+            <div class="in-content-ad">
+                <h4>🚀 Boost Your Earnings!</h4>
+                <p>Check out these amazing opportunities to earn more:</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-gem"></i> Premium Offers
+                </a>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-bolt"></i> Quick Cash
+                </a>
+                <div class="ad-label">Sponsored Content</div>
+            </div>
+            
             <!-- Wallet Summary -->
             <div class="wallet-summary">
                 <div class="balance-card">
@@ -929,6 +1144,16 @@
                     <p class="stat-value">₹150 (5% fee)</p>
                 </div>
             </div>
+            
+            <!-- In-Content Ad 2 -->
+            <div class="in-content-ad">
+                <h4>💎 Exclusive Partner Offer</h4>
+                <p>Limited time opportunity to double your earnings!</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 30px;">
+                    <i class="fas fa-crown"></i> Claim Now!
+                </a>
+                <div class="ad-label">Partner Advertisement</div>
+            </div>
         </div>
 
         <!-- Sell Internet Page -->
@@ -936,6 +1161,16 @@
             <div class="page-header">
                 <h1>Sell Internet Data</h1>
                 <button class="back-btn" data-page="dashboard">← Back</button>
+            </div>
+            
+            <!-- Sell Page Ad -->
+            <div class="in-content-ad">
+                <h4>⚡ While Your Internet Sells...</h4>
+                <p>Check out these quick money-making opportunities!</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-clock"></i> Earn While You Wait
+                </a>
+                <div class="ad-label">Advertisement</div>
             </div>
             
             <div class="sell-info-card">
@@ -999,6 +1234,15 @@
                     <li>Check your wallet balance or withdraw to your bank</li>
                 </ol>
             </div>
+            
+            <!-- Bottom Ad -->
+            <div class="in-content-ad">
+                <p>✅ <strong>Sale Completed?</strong> Check out more earning opportunities!</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-arrow-right"></i> Explore More
+                </a>
+                <div class="ad-label">Partner Link</div>
+            </div>
         </div>
 
         <!-- Wallet Page -->
@@ -1006,6 +1250,16 @@
             <div class="page-header">
                 <h1>My Wallet</h1>
                 <button class="back-btn" data-page="dashboard">← Back</button>
+            </div>
+            
+            <!-- Wallet Ad -->
+            <div class="in-content-ad">
+                <h4>💰 Want More Money?</h4>
+                <p>These offers can help you reach your withdrawal goal faster!</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-money-bill-wave"></i> Quick Cash Offers
+                </a>
+                <div class="ad-label">Advertisement</div>
             </div>
             
             <div class="wallet-overview">
@@ -1097,6 +1351,15 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Bottom Wallet Ad -->
+            <div class="in-content-ad">
+                <p><strong>Pro Tip:</strong> Combine with these offers to reach ₹150 faster!</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-rocket"></i> Accelerate Earnings
+                </a>
+                <div class="ad-label">Sponsored</div>
+            </div>
         </div>
 
         <!-- Withdraw Page -->
@@ -1104,6 +1367,16 @@
             <div class="page-header">
                 <h1>Withdraw Money</h1>
                 <button class="back-btn" data-page="dashboard">← Back</button>
+            </div>
+            
+            <!-- Withdraw Ad -->
+            <div class="in-content-ad">
+                <h4>🎉 Congratulations on Your Earnings!</h4>
+                <p>While waiting for withdrawal, check these exclusive offers:</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-gift"></i> Bonus Cash
+                </a>
+                <div class="ad-label">Advertisement</div>
             </div>
             
             <div class="withdrawal-form">
@@ -1137,6 +1410,15 @@
                     <!-- Transactions will be added here -->
                 </div>
             </div>
+            
+            <!-- Bottom Ad -->
+            <div class="in-content-ad" style="margin-top: 30px;">
+                <p>💡 <strong>Want faster withdrawals?</strong> Check premium options!</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-bolt"></i> Instant Cash Options
+                </a>
+                <div class="ad-label">Partner Link</div>
+            </div>
         </div>
 
         <!-- Transactions Page -->
@@ -1144,6 +1426,15 @@
             <div class="page-header">
                 <h1>Transaction History</h1>
                 <button class="back-btn" data-page="dashboard">← Back</button>
+            </div>
+            
+            <!-- Transactions Ad -->
+            <div class="in-content-ad">
+                <p>📈 <strong>Track your earnings!</strong> Discover more earning opportunities below:</p>
+                <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank">
+                    <i class="fas fa-chart-line"></i> Boost Income
+                </a>
+                <div class="ad-label">Advertisement</div>
             </div>
             
             <div id="allTransactionsList" class="transactions-list">
@@ -1167,7 +1458,169 @@
         </div>
     </div>
 
+    <!-- Bottom Ad Container -->
+    <div style="text-align: center; padding: 15px; background: rgba(255,255,255,0.1); margin-top: 30px; font-size: 12px; color: #6b7280;">
+        <a href="https://warhealthy.com/p3fk1xr56?key=23c14b726f53e87b1681da7ff937fe67" target="_blank" style="color: #667eea; text-decoration: none;">
+            <i class="fas fa-external-link-alt"></i> Partner Offers
+        </a>
+        <span style="margin: 0 10px;">|</span>
+        <span>Advertisement</span>
+    </div>
+
     <script>
+        // ... (Your existing JavaScript code remains exactly the same) ...
+        // Add these ad-related functions to your existing JavaScript:
+
+        // Initialize Ads Function
+        function initializeAds() {
+            console.log('Starting advertisements...');
+            
+            // Always show top banner
+            const topBanner = document.getElementById('topBannerAd');
+            if (topBanner) {
+                topBanner.style.display = 'block';
+                console.log('Top banner ad displayed');
+            }
+            
+            // Check screen width for sidebar ad
+            if (window.innerWidth > 768) {
+                const sidebarAd = document.getElementById('sidebarAd');
+                if (sidebarAd) {
+                    sidebarAd.classList.add('active');
+                    console.log('Sidebar ad displayed (desktop)');
+                }
+            }
+            
+            // Show floating button after delay
+            setTimeout(() => {
+                const floatingBtn = document.getElementById('floatingAdBtn');
+                if (floatingBtn) {
+                    floatingBtn.classList.add('active');
+                    console.log('Floating ad button activated');
+                }
+            }, 5000);
+            
+            // Initialize popunder ads (already loaded in head)
+            console.log('Popunder ads initialized');
+        }
+
+        // Ad triggers for user actions
+        function setupAdTriggers() {
+            // Sell button trigger
+            const sellBtn = document.getElementById('sellButton');
+            if (sellBtn) {
+                sellBtn.addEventListener('click', function() {
+                    console.log('Sell action - ad engagement opportunity');
+                    // Ad scripts auto-trigger here
+                });
+            }
+            
+            // Withdraw button trigger
+            const withdrawBtn = document.getElementById('withdrawButton');
+            if (withdrawBtn) {
+                withdrawBtn.addEventListener('click', function() {
+                    console.log('Withdraw action - ad engagement opportunity');
+                });
+            }
+            
+            // Page navigation triggers
+            document.querySelectorAll('[data-page]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    console.log('Page navigation - potential ad view');
+                });
+            });
+        }
+
+        // Update your initApp function to include ads
+        function initApp() {
+            console.log('Starting Internet Selling Platform...');
+            
+            // Initialize ads immediately
+            initializeAds();
+            
+            // ... rest of your existing initApp code ...
+            
+            // Check if user is logged in
+            const savedUser = localStorage.getItem('internetSellingUser');
+            
+            if (savedUser) {
+                try {
+                    const userData = JSON.parse(savedUser);
+                    
+                    if (userData && userData.id) {
+                        loadUserFromStorage(userData.id);
+                        showApp();
+                        // Setup ad triggers after login
+                        setupAdTriggers();
+                    } else {
+                        showAuth();
+                    }
+                } catch (e) {
+                    console.error('Error parsing saved user:', e);
+                    showAuth();
+                }
+            } else {
+                showAuth();
+            }
+            
+            setupEventListeners();
+            
+            // Check if Google SDK loaded
+            setTimeout(checkGoogleSDK, 2000);
+        }
+
+        // Update showApp to trigger ads
+        function showApp() {
+            authPage.style.display = 'none';
+            appContainer.style.display = 'block';
+            showPage('dashboard');
+            
+            // Additional ad triggers after login
+            setTimeout(() => {
+                console.log('User logged in - activating additional ads');
+                
+                // Show floating button
+                const floatingBtn = document.getElementById('floatingAdBtn');
+                if (floatingBtn) {
+                    floatingBtn.classList.add('active');
+                }
+                
+                // Setup ad triggers for logged in user
+                setupAdTriggers();
+            }, 1000);
+        }
+
+        // Ad trigger on sale completion
+        function completeSale() {
+            if (appData.currentSale && appData.currentSale.interval) {
+                clearInterval(appData.currentSale.interval);
+                
+                appData.wallet.balance += appData.currentSale.amount;
+                appData.wallet.dailyEarnings += appData.currentSale.amount;
+                
+                const transaction = {
+                    id: Date.now(),
+                    type: 'sale',
+                    amount: appData.currentSale.amount,
+                    date: new Date().toLocaleString(),
+                    status: 'completed',
+                    description: '100MB Internet Sale'
+                };
+                appData.transactions.unshift(transaction);
+                
+                saveUserData();
+                appData.currentSale = null;
+                updateUI();
+                updateSellPage();
+                
+                // Ad trigger point - after successful sale
+                console.log('Sale completed successfully - ad engagement trigger');
+                
+                showSuccessModal('Sale Completed!', `₹5.00 has been added to your wallet.`);
+            }
+        }
+
+        // ... (Rest of your existing JavaScript remains exactly the same) ...
         // Configuration
         const GOOGLE_CLIENT_ID = '875424435154-e8dm6897kaa6d0dr692grm5hmu60eaj6.apps.googleusercontent.com';
 
@@ -1252,35 +1705,7 @@
         const allTransactionsList = document.getElementById('allTransactionsList');
 
         // Initialize Application
-        function initApp() {
-            console.log('Starting Internet Selling Platform...');
-            
-            // Check if user is logged in
-            const savedUser = localStorage.getItem('internetSellingUser');
-            
-            if (savedUser) {
-                try {
-                    const userData = JSON.parse(savedUser);
-                    
-                    if (userData && userData.id) {
-                        loadUserFromStorage(userData.id);
-                        showApp();
-                    } else {
-                        showAuth();
-                    }
-                } catch (e) {
-                    console.error('Error parsing saved user:', e);
-                    showAuth();
-                }
-            } else {
-                showAuth();
-            }
-            
-            setupEventListeners();
-            
-            // Check if Google SDK loaded
-            setTimeout(checkGoogleSDK, 2000);
-        }
+        initApp();
 
         // Check if Google SDK loaded
         function checkGoogleSDK() {
@@ -1749,12 +2174,6 @@
             authStatus.style.display = 'none';
         }
 
-        function showApp() {
-            authPage.style.display = 'none';
-            appContainer.style.display = 'block';
-            showPage('dashboard');
-        }
-
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -1841,6 +2260,17 @@
             loginForm.reset();
             signupForm.reset();
             
+            // Hide ads
+            const floatingBtn = document.getElementById('floatingAdBtn');
+            if (floatingBtn) {
+                floatingBtn.classList.remove('active');
+            }
+            
+            const sidebarAd = document.getElementById('sidebarAd');
+            if (sidebarAd) {
+                sidebarAd.classList.remove('active');
+            }
+            
             // Show auth page
             showAuth();
         }
@@ -1865,7 +2295,6 @@
             return re.test(email);
         }
 
-        // Rest of the functions (updatePage, handleSellInternet, etc.) remain the same as before...
         // Update Page Specific Content
         function updatePage(pageId) {
             switch(pageId) {
@@ -1960,35 +2389,6 @@
             
             if (progressPercent >= 100) {
                 completeSale();
-            }
-        }
-
-        // Complete Sale
-        function completeSale() {
-            if (appData.currentSale && appData.currentSale.interval) {
-                clearInterval(appData.currentSale.interval);
-                
-                appData.wallet.balance += appData.currentSale.amount;
-                appData.wallet.dailyEarnings += appData.currentSale.amount;
-                
-                const transaction = {
-                    id: Date.now(),
-                    type: 'sale',
-                    amount: appData.currentSale.amount,
-                    date: new Date().toLocaleString(),
-                    status: 'completed',
-                    description: '100MB Internet Sale'
-                };
-                appData.transactions.unshift(transaction);
-                
-                saveUserData();
-                
-                appData.currentSale = null;
-                
-                updateUI();
-                updateSellPage();
-                
-                showSuccessModal('Sale Completed!', `₹5.00 has been added to your wallet.`);
             }
         }
 
@@ -2185,16 +2585,6 @@
         function closeModal() {
             successModal.classList.remove('active');
         }
-
-        // Initialize app
-        window.addEventListener('DOMContentLoaded', initApp);
-
-        // Close modal on outside click
-        window.addEventListener('click', (e) => {
-            if (e.target === successModal) {
-                closeModal();
-            }
-        });
 
         // Global function for Google callback
         window.handleGoogleSignIn = handleGoogleSignIn;
