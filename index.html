@@ -1,1 +1,1076 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naam Jap - Spiritual Chant Counter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Google Adsense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6345478259552976"
+     crossorigin="anonymous"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/></svg>');
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Ads */
+        .header-ad {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            min-height: 90px;
+        }
+        
+        .header-ad .adsbygoogle {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Sidebar Ads */
+        .sidebar-ad {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 160px;
+            z-index: 99;
+        }
+        
+        .sidebar-ad .adsbygoogle {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Content Ads */
+        .content-ad {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            min-height: 250px;
+        }
+        
+        .content-ad .adsbygoogle {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer Ads */
+        .footer-ad {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            min-height: 90px;
+        }
+        
+        .footer-ad .adsbygoogle {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Mobile Ads */
+        .mobile-ad {
+            display: none;
+            justify-content: center;
+            margin: 20px 0;
+            min-height: 100px;
+        }
+        
+        .mobile-ad .adsbygoogle {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar-ad {
+                display: none;
+            }
+            
+            .header-ad,
+            .footer-ad {
+                min-height: 100px;
+            }
+            
+            .mobile-ad {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-ad,
+            .content-ad,
+            .footer-ad {
+                min-height: 50px;
+            }
+            
+            .mobile-ad {
+                min-height: 50px;
+            }
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 40px;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #a0a0c0;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .chant-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            font-size: 1.5rem;
+        }
+        
+        .chant-box {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .chant-mantra {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .mic-section {
+            margin: 30px 0;
+        }
+        
+        .mic-btn {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF416C, #FF4B2B);
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mic-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(255, 65, 108, 0.6);
+        }
+        
+        .mic-btn.active {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
+        
+        .mic-status {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            color: #a0a0c0;
+        }
+        
+        .mic-status.active {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .countdown {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 20px 0;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+        
+        .countdown.hidden {
+            display: none;
+        }
+        
+        .counter-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .counter-item {
+            text-align: center;
+        }
+        
+        .counter-label {
+            font-size: 1rem;
+            color: #a0a0c0;
+            margin-bottom: 5px;
+        }
+        
+        .counter-value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+        
+        .stats-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .wallet-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .wallet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .balance {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .coin-icon {
+            font-size: 2.5rem;
+            color: #FFD700;
+        }
+        
+        .conversion {
+            font-size: 1.1rem;
+            color: #a0a0c0;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .withdraw-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #4CAF50, #2E7D32);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .withdraw-btn:hover {
+            background: linear-gradient(90deg, #45a049, #1B5E20);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .withdraw-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .leaderboard {
+            margin-top: 30px;
+        }
+        
+        .leaderboard-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .leaderboard-list {
+            list-style: none;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .leaderboard-item:last-child {
+            border-bottom: none;
+        }
+        
+        .leaderboard-item:nth-child(1) .rank {
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            color: #000;
+        }
+        
+        .leaderboard-item:nth-child(2) .rank {
+            background: linear-gradient(90deg, #C0C0C0, #A0A0A0);
+        }
+        
+        .leaderboard-item:nth-child(3) .rank {
+            background: linear-gradient(90deg, #CD7F32, #A0522D);
+        }
+        
+        .rank {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .user-info {
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+        
+        .user-name {
+            font-weight: 600;
+        }
+        
+        .user-chants {
+            font-size: 0.9rem;
+            color: #a0a0c0;
+        }
+        
+        .user-coins {
+            font-weight: bold;
+            color: #FFD700;
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            grid-column: 1 / -1;
+        }
+        
+        .instructions h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+            color: #a0a0c0;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #a0a0c0;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+        }
+        
+        .floating-coins {
+            position: fixed;
+            font-size: 24px;
+            color: #FFD700;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Privacy Policy Link */
+        .privacy-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .privacy-link a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .privacy-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Ad -->
+        <div class="header-ad">
+            <!-- Naam Header -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-6345478259552976"
+                 data-ad-slot="5342753484"></ins>
+        </div>
+        
+        <!-- Mobile Ad (Top) -->
+        <div class="mobile-ad">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:100px"
+                 data-ad-client="ca-pub-6345478259552976"
+                 data-ad-slot="5342753485"></ins>
+        </div>
+        
+        <header>
+            <div class="logo">
+                <i class="fas fa-om logo-icon"></i>
+                <h1>Naam Jap</h1>
+            </div>
+            <p class="tagline">Transform your spiritual chanting into blessings and rewards. Every "Narayan" chant brings you closer to peace and prosperity.</p>
+        </header>
+        
+        <!-- Sidebar Ad (Desktop only) -->
+        <div class="sidebar-ad">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-6345478259552976"
+                 data-ad-slot="5342753486"></ins>
+        </div>
+        
+        <div class="main-content">
+            <div class="chant-section">
+                <h2 class="section-title"><i class="fas fa-microphone"></i> Chant Now</h2>
+                
+                <!-- In-content Ad 1 -->
+                <div class="content-ad">
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-6345478259552976"
+                         data-ad-slot="5342753487"></ins>
+                </div>
+                
+                <div class="chant-box">
+                    <div class="chant-mantra">नारायण</div>
+                    <p>Chant the sacred name to earn spiritual coins</p>
+                </div>
+                
+                <div class="mic-section">
+                    <button id="micButton" class="mic-btn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <div id="micStatus" class="mic-status">Click to start chanting</div>
+                </div>
+                
+                <div id="countdown" class="countdown hidden">3</div>
+                
+                <div class="counter-display">
+                    <div class="counter-item">
+                        <div class="counter-label">Today's Chants</div>
+                        <div id="todayCount" class="counter-value">0</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-label">Total Chants</div>
+                        <div id="totalCount" class="counter-value">0</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-label">Coins Earned</div>
+                        <div id="coinCount" class="counter-value">0</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <h2 class="section-title"><i class="fas fa-wallet"></i> Your Spiritual Wallet</h2>
+                
+                <div class="wallet-box">
+                    <div class="wallet-header">
+                        <div class="balance">₹ <span id="balance">0.00</span></div>
+                        <i class="fas fa-coins coin-icon"></i>
+                    </div>
+                    
+                    <div class="conversion">
+                        <p>100 Coins = ₹1.00</p>
+                        <p>You have <span id="walletCoins" class="counter-value">0</span> coins</p>
+                    </div>
+                    
+                    <button id="withdrawBtn" class="withdraw-btn" disabled>
+                        Withdraw Earnings (Minimum ₹50)
+                    </button>
+                </div>
+                
+                <!-- In-content Ad 2 -->
+                <div class="content-ad">
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-6345478259552976"
+                         data-ad-slot="5342753488"></ins>
+                </div>
+                
+                <div class="leaderboard">
+                    <h3 class="leaderboard-title">
+                        <i class="fas fa-trophy"></i> Top Devotees
+                    </h3>
+                    
+                    <ul class="leaderboard-list" id="leaderboard">
+                        <!-- Leaderboard will be populated by JavaScript -->
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Mobile Ad (Middle) -->
+            <div class="mobile-ad">
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:320px;height:100px"
+                     data-ad-client="ca-pub-6345478259552976"
+                     data-ad-slot="5342753489"></ins>
+            </div>
+            
+            <div class="instructions">
+                <h3><i class="fas fa-info-circle"></i> How to Use Naam Jap</h3>
+                <ol>
+                    <li>Click the microphone button to start chanting</li>
+                    <li>Clearly chant "Narayan" (नारायण) when prompted</li>
+                    <li>After each successful chant, you'll earn 1 coin</li>
+                    <li>Accumulate coins and convert them to real money (100 coins = ₹1)</li>
+                    <li>Withdraw your earnings when you reach ₹50 or more</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Footer Ad -->
+        <div class="footer-ad">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-6345478259552976"
+                 data-ad-slot="5342753490"></ins>
+        </div>
+        
+        <!-- Mobile Ad (Bottom) -->
+        <div class="mobile-ad">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:100px"
+                 data-ad-client="ca-pub-6345478259552976"
+                 data-ad-slot="5342753491"></ins>
+        </div>
+        
+        <!-- Privacy Policy Link -->
+        <div class="privacy-link">
+            <a href="#" onclick="showPrivacyPolicy()">Privacy Policy & Cookie Notice</a>
+        </div>
+        
+        <footer class="footer">
+            <p>Naam Jap - A Spiritual Practice with Modern Rewards</p>
+            <p>© 2023 | Chant with devotion, earn with gratitude</p>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const micButton = document.getElementById('micButton');
+        const micStatus = document.getElementById('micStatus');
+        const countdownElement = document.getElementById('countdown');
+        const todayCountElement = document.getElementById('todayCount');
+        const totalCountElement = document.getElementById('totalCount');
+        const coinCountElement = document.getElementById('coinCount');
+        const balanceElement = document.getElementById('balance');
+        const walletCoinsElement = document.getElementById('walletCoins');
+        const withdrawBtn = document.getElementById('withdrawBtn');
+        const leaderboardElement = document.getElementById('leaderboard');
+        
+        // State variables
+        let isListening = false;
+        let todayCount = 0;
+        let totalCount = 0;
+        let coins = 0;
+        let balance = 0;
+        let recognition;
+        
+        // Leaderboard data
+        const leaderboardData = [
+            { name: "Radhe Shyam", chants: 1247, coins: 1247 },
+            { name: "Krishna Das", chants: 987, coins: 987 },
+            { name: "Gopal Bhakt", chants: 756, coins: 756 },
+            { name: "Hari Om", chants: 623, coins: 623 },
+            { name: "Shiv Shakti", chants: 512, coins: 512 }
+        ];
+        
+        // Initialize Google Ads
+        function initAds() {
+            // Initialize all ads
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            
+            // Load ads after a short delay
+            setTimeout(() => {
+                // Refresh ads after content loads
+                if (typeof adsbygoogle !== 'undefined') {
+                    adsbygoogle = window.adsbygoogle || [];
+                    adsbygoogle.push({});
+                }
+            }, 1000);
+        }
+        
+        // Show Privacy Policy
+        function showPrivacyPolicy() {
+            const policy = `
+            <div style="background: rgba(0,0,0,0.9); color: white; padding: 20px; border-radius: 10px; max-width: 600px; margin: 20px auto;">
+                <h2 style="color: #FFD700;">Privacy Policy & Cookie Notice</h2>
+                <p>This site uses Google AdSense to display advertisements. Google uses cookies to serve ads based on your prior visits to this website or other websites.</p>
+                <p>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.</p>
+                <p>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" style="color: #FFD700;">Google Ads Settings</a>.</p>
+                <p>We value your privacy and only use cookies to improve your experience and support the maintenance of this spiritual service.</p>
+                <button onclick="this.parentElement.remove()" style="background: #FFD700; color: black; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Close</button>
+            </div>
+            `;
+            
+            const div = document.createElement('div');
+            div.innerHTML = policy;
+            div.style.position = 'fixed';
+            div.style.top = '50%';
+            div.style.left = '50%';
+            div.style.transform = 'translate(-50%, -50%)';
+            div.style.zIndex = '1000';
+            document.body.appendChild(div);
+        }
+        
+        // Initialize the app
+        function initApp() {
+            // Initialize ads first
+            initAds();
+            
+            // Load saved data from localStorage
+            const savedTodayCount = localStorage.getItem('naamJapTodayCount');
+            const savedTotalCount = localStorage.getItem('naamJapTotalCount');
+            const savedCoins = localStorage.getItem('naamJapCoins');
+            
+            if (savedTodayCount) todayCount = parseInt(savedTodayCount);
+            if (savedTotalCount) totalCount = parseInt(savedTotalCount);
+            if (savedCoins) coins = parseInt(savedCoins);
+            
+            // Calculate balance
+            balance = coins / 100;
+            
+            // Update UI
+            updateCounters();
+            updateBalance();
+            populateLeaderboard();
+            updateWithdrawButton();
+            
+            // Initialize voice recognition
+            initVoiceRecognition();
+        }
+        
+        // Initialize Web Speech API
+        function initVoiceRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'hi-IN'; // Hindi language for better recognition
+                
+                recognition.onstart = function() {
+                    micStatus.textContent = "Listening... Chant 'Narayan' now";
+                    micStatus.classList.add('active');
+                };
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript.toLowerCase().trim();
+                    
+                    // Check if the chant contains "narayan"
+                    if (transcript.includes('narayan') || transcript.includes('नारायण')) {
+                        handleSuccessfulChant();
+                    } else {
+                        micStatus.textContent = "Chant not recognized. Please try again.";
+                        setTimeout(() => {
+                            micStatus.textContent = "Click microphone to chant again";
+                            micStatus.classList.remove('active');
+                            micButton.classList.remove('active');
+                            isListening = false;
+                        }, 2000);
+                    }
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error', event.error);
+                    micStatus.textContent = "Error: " + event.error;
+                    micButton.classList.remove('active');
+                    isListening = false;
+                    
+                    setTimeout(() => {
+                        micStatus.textContent = "Click microphone to try again";
+                        micStatus.classList.remove('active');
+                    }, 2000);
+                };
+                
+                recognition.onend = function() {
+                    if (isListening) {
+                        // If still listening, restart recognition
+                        setTimeout(() => {
+                            if (isListening) {
+                                recognition.start();
+                            }
+                        }, 100);
+                    }
+                };
+            } else {
+                micButton.disabled = true;
+                micStatus.textContent = "Voice recognition not supported in your browser";
+            }
+        }
+        
+        // Handle successful chant
+        function handleSuccessfulChant() {
+            // Show countdown animation
+            showCountdown();
+            
+            // After countdown, add the chant
+            setTimeout(() => {
+                // Increment counters
+                todayCount++;
+                totalCount++;
+                coins++;
+                
+                // Recalculate balance
+                balance = coins / 100;
+                
+                // Save to localStorage
+                localStorage.setItem('naamJapTodayCount', todayCount.toString());
+                localStorage.setItem('naamJapTotalCount', totalCount.toString());
+                localStorage.setItem('naamJapCoins', coins.toString());
+                
+                // Update UI
+                updateCounters();
+                updateBalance();
+                updateWithdrawButton();
+                createFloatingCoin();
+                
+                // Update mic status
+                micStatus.textContent = "Chant recorded! 1 coin earned";
+                
+                // Stop listening
+                isListening = false;
+                micButton.classList.remove('active');
+                recognition.stop();
+                
+                // Reset status after delay
+                setTimeout(() => {
+                    micStatus.textContent = "Click microphone to chant again";
+                    micStatus.classList.remove('active');
+                }, 3000);
+            }, 3000); // Wait for countdown to complete
+        }
+        
+        // Show countdown animation
+        function showCountdown() {
+            countdownElement.classList.remove('hidden');
+            countdownElement.textContent = '3';
+            
+            let count = 3;
+            const countdownInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownElement.textContent = count;
+                } else {
+                    countdownElement.textContent = '🎉';
+                    clearInterval(countdownInterval);
+                    
+                    // Hide countdown after a moment
+                    setTimeout(() => {
+                        countdownElement.classList.add('hidden');
+                    }, 1000);
+                }
+            }, 1000);
+        }
+        
+        // Update all counters
+        function updateCounters() {
+            todayCountElement.textContent = todayCount;
+            totalCountElement.textContent = totalCount;
+            coinCountElement.textContent = coins;
+            walletCoinsElement.textContent = coins;
+        }
+        
+        // Update balance display
+        function updateBalance() {
+            balanceElement.textContent = balance.toFixed(2);
+        }
+        
+        // Update withdraw button state
+        function updateWithdrawButton() {
+            if (balance >= 50) {
+                withdrawBtn.disabled = false;
+                withdrawBtn.textContent = `Withdraw ₹${balance.toFixed(2)}`;
+            } else {
+                withdrawBtn.disabled = true;
+                withdrawBtn.textContent = `Withdraw Earnings (Minimum ₹50)`;
+            }
+        }
+        
+        // Create floating coin animation
+        function createFloatingCoin() {
+            const coin = document.createElement('div');
+            coin.className = 'floating-coins';
+            coin.innerHTML = '🪙';
+            coin.style.left = `${Math.random() * 80 + 10}%`;
+            coin.style.top = '80%';
+            
+            document.body.appendChild(coin);
+            
+            // Animate the coin
+            coin.style.animation = `floatUp 2s forwards`;
+            
+            // Remove coin after animation
+            setTimeout(() => {
+                coin.remove();
+            }, 2000);
+        }
+        
+        // Populate leaderboard
+        function populateLeaderboard() {
+            leaderboardElement.innerHTML = '';
+            
+            leaderboardData.forEach((user, index) => {
+                const li = document.createElement('li');
+                li.className = 'leaderboard-item';
+                
+                li.innerHTML = `
+                    <div class="rank">${index + 1}</div>
+                    <div class="user-info">
+                        <div class="user-name">${user.name}</div>
+                        <div class="user-chants">${user.chants} chants</div>
+                    </div>
+                    <div class="user-coins">${user.coins} 🪙</div>
+                `;
+                
+                leaderboardElement.appendChild(li);
+            });
+            
+            // Add current user to leaderboard if they have enough chants
+            if (totalCount > 200) {
+                const li = document.createElement('li');
+                li.className = 'leaderboard-item';
+                li.innerHTML = `
+                    <div class="rank">#</div>
+                    <div class="user-info">
+                        <div class="user-name">You</div>
+                        <div class="user-chants">${totalCount} chants</div>
+                    </div>
+                    <div class="user-coins">${coins} 🪙</div>
+                `;
+                leaderboardElement.appendChild(li);
+            }
+        }
+        
+        // Event Listeners
+        micButton.addEventListener('click', function() {
+            if (!isListening) {
+                isListening = true;
+                micButton.classList.add('active');
+                
+                if (recognition) {
+                    recognition.start();
+                } else {
+                    // Fallback if recognition not available
+                    micStatus.textContent = "Voice recognition initializing...";
+                    setTimeout(() => {
+                        // Simulate a chant for demo purposes
+                        handleSuccessfulChant();
+                    }, 1000);
+                }
+            } else {
+                isListening = false;
+                micButton.classList.remove('active');
+                micStatus.textContent = "Chanting stopped";
+                micStatus.classList.remove('active');
+                
+                if (recognition) {
+                    recognition.stop();
+                }
+            }
+        });
+        
+        withdrawBtn.addEventListener('click', function() {
+            if (balance >= 50) {
+                alert(`Withdrawal request for ₹${balance.toFixed(2)} submitted!\n\nYour earnings will be transferred to your registered UPI/Bank account within 24 hours.`);
+                
+                // Reset coins and balance after withdrawal (for demo)
+                coins = 0;
+                balance = 0;
+                
+                // Save reset values
+                localStorage.setItem('naamJapCoins', '0');
+                
+                // Update UI
+                updateCounters();
+                updateBalance();
+                updateWithdrawButton();
+                
+                // Refresh ads after withdrawal
+                setTimeout(initAds, 500);
+            }
+        });
+        
+        // Initialize the app when page loads
+        window.addEventListener('DOMContentLoaded', initApp);
+        
+        // Refresh ads periodically
+        setInterval(() => {
+            if (typeof adsbygoogle !== 'undefined') {
+                adsbygoogle = window.adsbygoogle || [];
+                adsbygoogle.push({});
+            }
+        }, 30000); // Refresh every 30 seconds
+    </script>
+</body>
+</html>
